@@ -1,3 +1,4 @@
+"use server";
 import { cookies } from "next/headers";
 import { verifyJWT } from "./jwt";
 import { prisma } from "./prisma";

@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useAuth } from "@/context/auth-context";
 import DynamicForm from "@/components/ui/DynamicForm";
 import { loginFields, loginSchema } from "@/lib/form-configs";
 import { loginUser } from "@/actions/user";
