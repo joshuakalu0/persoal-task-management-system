@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 export default async function page() {
   const user = await getServerUser();
 
-  if (!user) {
+  if (user) {
     redirect("/dashboard");
   }
   return <RegisterPage />;
