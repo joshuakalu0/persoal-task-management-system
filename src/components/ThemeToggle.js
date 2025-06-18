@@ -26,11 +26,11 @@ export default function ThemeToggle() {
   const thumbLeft = theme === "dark" ? 80 : 4;
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex items-center">
-      <div className="relative flex bg-[#232428] rounded-full p-1 w-40 h-12 shadow">
+    <div className="absolute bottom-2.5 z-50 flex items-center">
+      <div className="relative flex bg-[#232428] rounded-full p-1 w-44 h-9 shadow">
         {/* Animated thumb */}
         <motion.div
-          className="absolute top-1 h-10 w-[72px] rounded-full bg-[#393A3E] z-0"
+          className="absolute top-1 h-9 w-[72px] rounded-full bg-[#393A3E] z-0"
           animate={{ left: thumbLeft }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
         />

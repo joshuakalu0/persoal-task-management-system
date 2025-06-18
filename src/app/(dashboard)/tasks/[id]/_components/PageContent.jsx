@@ -57,21 +57,7 @@ export default function PageContent({ task, project }) {
     // console.log("Sending message:", data);
   };
 
-  const handleFileUpload = async (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    setUploading(true);
-
-    try {
-      // TODO: Implement file upload
-      console.log("Uploading files:", selectedFiles);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setFiles((prev) => [...prev, ...selectedFiles]);
-    } catch (error) {
-      console.error("Upload failed:", error);
-    } finally {
-      setUploading(false);
-    }
-  };
+  const handleFileUpload = async (e) => {};
 
   const getPriorityColor = (priority) => {
     switch (priority) {

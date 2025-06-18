@@ -5,6 +5,7 @@ import {
   updateassignUsers,
 } from "@/actions/task";
 import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
 
 export default function AssignUserModal({
   isOpen,
@@ -61,7 +62,7 @@ export default function AssignUserModal({
             onClick={onClose}
             className="text-text-primary hover:text-foreground transition-colors"
           >
-            ×
+            <X />
           </button>
         </div>
 
