@@ -2,7 +2,6 @@
 
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { signIn } from "@/lib/auth";
 import { cookies } from "next/headers";
 
 export async function registerUser(data) {
@@ -41,7 +40,6 @@ export async function registerUser(data) {
 
 export async function authenticate(prevState, formData) {
   try {
-    await signIn("credentials", Object.fromEntries(formData));
     return { success: true };
   } catch (error) {
     if (error.message.includes("CredentialsSignin")) {
