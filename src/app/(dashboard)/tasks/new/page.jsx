@@ -1,0 +1,7 @@
+import CreateTaskPage from "./_components/form";
+
+export default async function page(props) {
+  const query = await props.searchParams;
+  console.log(query.projectId);
+  return <CreateTaskPage project_id={query.projectId} />;
+}

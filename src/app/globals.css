@@ -1,11 +1,12 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
+/* :root {
+  --background: #e40505;
   --foreground: #171717;
+  --progress: #ffa048;
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -14,13 +15,193 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #2a2b2f;
     --foreground: #ededed;
+    --primary: #ffffff;
+    --secondary: #ffffff;
+    --text-primary: #1c1d2280;
+    --text-secondary: #1c1d22;
   }
+}
+
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #222327;
+  --secondary: #292b31;
+  --text-primary: #ffffff80;
+  --text-secondary: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+.bg-primary {
+  background: var(--primary);
+}
+.bg-secondary {
+  background: var(--secondary);
+}
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.bg-progress {
+  background: var(--progress);
+} */
+
+@import "tailwindcss";
+
+/* :root {
+  --background: #e40505;
+  --foreground: #171717;
+  --progress: #ffa048;
+  --btn-primary: #3498db;
+  --btn-secondary: #2ecc71;
+  --accent: #9b59b6;
+  --text-primary: #1c1d2280;
+  --text-secondary: #1c1d22;
+  --border-radius: 0.5rem;
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #222327;
+    --foreground: #292b31;
+    --primary: #ffffff;
+    --secondary: #ffffff;
+    --btn-primary: #3498db;
+    --btn-secondary: #2ecc71;
+    --text-primary: #1c1d2280;
+    --text-secondary: #1c1d22;
+    --off-text: #ffffff;
+    --accent: #8e44ad;
+  }
+}
+
+html.dark {
+  --background: #ffffff;
+  --foreground: #ffffff;
+  --primary: #222327;
+  --secondary: #292b31;
+  --btn-primary: #3498db;
+  --btn-secondary: #2ecc71;
+  --off-text: #292b31;
+  --text-primary: #ffffff80;
+  --text-secondary: #ffffff;
+  --accent: #7a288a;
+}
+
+/* body {
+  background: var(--primary);
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+} */
+
+/* Background colors */
+.bg-primary {
+  background: var(--primary);
+}
+.bg-secondary {
+  background: var(--secondary);
+}
+.btn-primary {
+  background: var(--btn-primary);
+}
+.btn-secondary {
+  background: var(--btn-secondary);
+}
+.bg-accent {
+  background: var(--accent);
+}
+.bg-progress {
+  background: var(--progress);
+}
+.bg-background {
+  background: var(--background);
+}
+
+/* Text colors */
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-accent {
+  color: var(--accent);
+}
+.text-off {
+  color: var(--off-text);
+}
+
+/* Button styles */
+.button {
+  background: var(--primary);
+  color: var(--text-secondary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--secondary);
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+/* Card styles */
+.card {
+  background: var(--background);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Input styles */
+.input {
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.items-center {
+  align-items: center;
 }
