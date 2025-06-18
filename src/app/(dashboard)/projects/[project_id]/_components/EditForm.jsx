@@ -139,32 +139,32 @@ export default function EditProjectForm({ projectId, project }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-background p-8">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen w-full bg-secondary p-8">
+      <div className="max-w-3xl bg-off shadow p-3 rounded-lg m-border mx-auto">
         <div className="mb-8">
           <Link
             href={`/projects/${projectId}`}
-            className="text-primary hover:text-primary/80 transition-colors mb-2 block"
+            className="text-primary hover:text-primary transition-colors mb-2 block"
           >
             ← Back to Project
           </Link>
-          <h1 className="text-2xl font-bold text-foreground">Edit Project</h1>
+          <h1 className="text-2xl font-bold text-secondary">Edit Project</h1>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="bg-card p-6 rounded-xl border border-border">
+          <div className="bg-card p-6 rounded-xl m-border border-border">
             <div className="space-y-4">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-text-primary mb-1"
+                  className="block text-sm font-medium text-primary mb-1"
                 >
                   Project Name
                 </label>
                 <input
                   id="name"
                   {...register("name")}
-                  className="w-full p-3 rounded-lg bg-background border border-text-primary text-foreground"
+                  className="w-full p-3 rounded-lg bg-secondary m-border border-text-primary text-secondary"
                   placeholder="Enter project name"
                 />
                 {errors.name && (
@@ -177,14 +177,14 @@ export default function EditProjectForm({ projectId, project }) {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-sm font-medium text-text-primary mb-1"
+                  className="block text-sm font-medium text-primary mb-1"
                 >
                   Description
                 </label>
                 <textarea
                   id="description"
                   {...register("description")}
-                  className="w-full p-3 rounded-lg bg-background border border-text-primary text-foreground min-h-[100px]"
+                  className="w-full p-3 rounded-lg bg-secondary m-border border-text-primary text-secondary min-h-[100px]"
                   placeholder="Enter project description"
                 />
                 {errors.description && (
@@ -195,7 +195,7 @@ export default function EditProjectForm({ projectId, project }) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
+                <label className="block text-sm font-medium text-primary mb-2">
                   Project Color
                 </label>
                 <div className="flex gap-2">
@@ -209,12 +209,12 @@ export default function EditProjectForm({ projectId, project }) {
                       }}
                       className={`w-10 h-10 rounded-full cursor-pointer transition-all duration-200 hover:scale-110 group relative ${
                         selectedColor === color.color
-                          ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                          ? "ring-2 ring-primary ring-offset-2 ring-offset-secondary"
                           : ""
                       }`}
-                      style={{ backgroundColor: color.color }}
+                      style={{ secondaryColor: color.color }}
                     >
-                      <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-text-primary opacity-0 group-hover:opacity-100 whitespace-nowrap">
+                      <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-primary opacity-0 group-hover:opacity-100 whitespace-nowrap">
                         {color.name}
                       </span>
                     </button>
@@ -223,7 +223,7 @@ export default function EditProjectForm({ projectId, project }) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
+                <label className="block text-sm font-medium text-primary mb-2">
                   Project Members
                 </label>
                 <div className="space-y-4">
@@ -243,7 +243,7 @@ export default function EditProjectForm({ projectId, project }) {
                           }
                         }}
                         placeholder="Enter member email"
-                        className="w-full p-3 rounded-lg bg-background border border-text-primary text-foreground"
+                        className="w-full p-3 rounded-lg bg-secondary border border-text-primary text-secondary"
                         disabled={addingMember}
                       />
                     </div>
@@ -291,9 +291,11 @@ export default function EditProjectForm({ projectId, project }) {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
-                                className="bg-primary/10 border-2 group border-gray-100 rounded-lg p-2  text-primary px-3 py-1.5  text-sm flex items-center gap-2  hover:bg-primary transition-colors"
+                                className="bg-primary/10 m-border border-2 group border-gray-100 rounded-lg p-2  text-primary px-3 py-1.5  text-sm flex items-center gap-2  hover:bg-primary transition-colors"
                               >
-                                <span className="text-off">{email}</span>
+                                <span className=" text-seminold text-primary">
+                                  {email}
+                                </span>
                                 <button
                                   type="button"
                                   onClick={() => handleRemoveMember(index)}
@@ -316,7 +318,7 @@ export default function EditProjectForm({ projectId, project }) {
             <div className="mt-6 flex justify-end gap-4">
               <Link
                 href={`/projects/${projectId}`}
-                className="px-4 py-2 rounded-lg border border-border text-text-primary hover:text-foreground transition-colors"
+                className="px-4 py-2 rounded-lg border border-border text-primary hover:text-secondary transition-colors"
               >
                 Cancel
               </Link>

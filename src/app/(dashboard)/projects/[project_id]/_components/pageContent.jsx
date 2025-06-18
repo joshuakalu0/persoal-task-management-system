@@ -12,7 +12,11 @@ const Status = {
   done: TaskStatus.DONE,
 };
 
-export default function PageContent({ projects = [], tasks: tasklist }) {
+export default function PageContent({
+  projects = [],
+  tasks: tasklist,
+  project_id,
+}) {
   const [tasks, setTasks] = useState(tasklist || []);
   const [selectedProject, setSelectedProject] = useState(null);
   const [sortBy, setSortBy] = useState("date");
@@ -106,11 +110,12 @@ export default function PageContent({ projects = [], tasks: tasklist }) {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-">
       <div className="flex gap-6 h-full">
         <TaskSet
           title="To do"
           onDrag={handleDrag}
+          project_id={project_id}
           itemOnAir={itemsBeingDragged}
           tasks={todoTasks}
           count={todoTasks.length}
@@ -129,6 +134,7 @@ export default function PageContent({ projects = [], tasks: tasklist }) {
           itemOnAir={itemsBeingDragged}
           count={inProgressTasks.length}
           onAddTask={() => openCreateDialog("in-progress")}
+          project_id={project_id}
           onDrop={(e) => handleDrop(e, "in-progress")}
           onDragOver={handleDragOver}
           onDragEnter={(e) => handleDragEnter(e, "in-progress")}
@@ -143,6 +149,7 @@ export default function PageContent({ projects = [], tasks: tasklist }) {
           itemOnAir={itemsBeingDragged}
           count={doneTasks.length}
           onAddTask={() => openCreateDialog("done")}
+          project_id={project_id}
           onDrop={(e) => handleDrop(e, "done")}
           onDragOver={handleDragOver}
           onDragEnter={(e) => handleDragEnter(e, "done")}

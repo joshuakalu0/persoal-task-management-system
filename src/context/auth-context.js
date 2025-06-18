@@ -50,7 +50,7 @@ export function AuthProvider({ children }) {
       }
 
       setUser(data.user);
-      router.push("/");
+      router.push("/dashboard");
       return { success: true };
     } catch (error) {
       return { error: error.message };

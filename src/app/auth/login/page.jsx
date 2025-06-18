@@ -43,6 +43,7 @@ export default function LoginPage() {
             password: "",
           }}
           submitText="Login"
+          submitSize='full'
           className="space-y-4"
         >
           {error && <p className="text-red-400 text-sm">{error}</p>}

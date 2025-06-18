@@ -28,7 +28,6 @@ const colors = {
 };
 
 export const getColor = (name) => {
-  // const lastWord = name.slice(name.length - 2, name.length);
   const lastWord = name.slice(0, 1).toLowerCase();
 
   return colors[lastWord];

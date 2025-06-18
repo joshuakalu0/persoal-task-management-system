@@ -1,5 +1,12 @@
 import Button from "@/components/ui/button";
-import { AlertCircle, Bell, LayoutList, Plus } from "lucide-react";
+import {
+  AlertCircle,
+  Bell,
+  Calendar,
+  LayoutList,
+  Plus,
+  Search,
+} from "lucide-react";
 import Link from "next/link";
 
 const Header = ({ subsection = false, config }) => {
@@ -9,7 +16,7 @@ const Header = ({ subsection = false, config }) => {
       <div className="flex items-center justify-between mb-4">
         {/* Welcome message */}
         <div className="flex items-center">
-          <h1 className="text-xl font-medium text-white">
+          <h1 className="text-xl font-bold text-secondary">
             Welcome back,{config.user.name}
             <span className="ml-2">👋</span>
           </h1>
@@ -18,46 +25,18 @@ const Header = ({ subsection = false, config }) => {
         {/* Right side with search, notifications, date, and avatar */}
         <div className="flex items-center space-x-4">
           {/* Search icon */}
-          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
-            <svg
-              className="w-5 h-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
+          <div className="p-2  rounded-full  transition-colors">
+            <Search className="text-secondary size-5" />
+          </div>
 
-          {/* Notification bell with badge */}
-          <button className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors">
-            <Bell />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full text-xs flex items-center justify-center text-white font-medium">
-              3
-            </span>
-          </button>
+          <div className="relative p-2 rounded-full transition-colors">
+            <Bell className="text-secondary size-5" />
+            <span className="absolute top-2 right-2 size-2 bg-orange-500 rounded-full text-xs flex items-center justify-center text-white font-medium"></span>
+          </div>
 
-          {/* Calendar with date */}
           <div className="flex items-center space-x-2 text-gray-300">
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <span className="text-sm">19 May 2022</span>
+            <Calendar className="text-secondary size-5" />
+            <span className="text-sm text-primary">19 May 2022</span>
           </div>
 
           {/* avatar */}
@@ -75,26 +54,26 @@ const Header = ({ subsection = false, config }) => {
           {/* Left side with board view tabs */}
           <div className="flex items-center space-x-6">
             {/* Board view tab (active) */}
-            <div className="flex items-center space-x-2 pb-5 border-b-2 border-white">
-              <LayoutList />
-              <span className="font-medium text-white">Board view</span>
+            <div className="flex items-center space-x-2 pb-5 b-border border-b-2 justify-center ">
+              <LayoutList className="text-primary size-4" />
+              <span className="font-medium text-secondary">Board view</span>
             </div>
 
             {/* Add view button */}
             <button className="flex pb-5 items-center space-x-1 transition-colors">
-              <Plus className="w-5 h-5 rounded-full p-0.5 bg-white/10 hover:bg-white/40 space-x-2 text-gray-400 hover:text-white"></Plus>
-              <span>Add view</span>
+              <Plus className="w-5 h-5 rounded-full p-0.5 bg-shadow  space-x-2 text-secondary hover:text-primary" />
+              <span className="text-primary font-semibold">Add view</span>
             </button>
           </div>
 
           {/* Right side with controls */}
           <div className="flex  items-center space-x-4">
             {/* Filter button */}
-            <button className="text-white pb-5 rounded-full px-2 py-1 hover:bg-white/10 transition-colors">
+            <button className="text-secondary pb-5 rounded-full px-2 py-1 transition-colors font-semibold">
               Filter
             </button>
             {/* Sort button */}
-            <button className="text-white/50 hover:text-white transition-colors">
+            <button className="text-primary hover:text-white transition-colors pb-3 font-semibold">
               Sort
             </button>
             {/* More options */}

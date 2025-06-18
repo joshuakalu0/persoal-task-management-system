@@ -20,7 +20,7 @@ export default async function page(props) {
   };
   return (
     <DashboardLayoutWrapper config={config}>
-      <PageContent projects={projects} tasks={tasks} />
+      <PageContent project_id={id} projects={projects} tasks={tasks} />
     </DashboardLayoutWrapper>
   );
 }

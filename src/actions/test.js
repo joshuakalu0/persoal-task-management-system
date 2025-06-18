@@ -46,3 +46,81 @@ prisma migrate dev --name init */
 // bunx prisma generate
 // const session = await auth()
 // ajujoshua@gmail.com  admin@gg.com
+
+
+// :root {
+//   --color-bg: #f9fafb;
+//   --color-card: #ffffff;
+//   --color-border: #e5e7eb;
+//   --color-text: #1f2937;
+//   --color-muted: #6b7280;
+
+//   --color-primary: #4f46e5;
+//   --color-primary-hover: #4338ca;
+//   --color-secondary: #f59e0b;
+//   --color-success: #22c55e;
+//   --color-danger: #ef4444;
+//   --color-warning: #facc15;
+
+//   --radius-xl: 1rem;
+//   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+// }
+
+// .dark {
+//   --color-bg: #111827;
+//   --color-card: #1f2937;
+//   --color-border: #374151;
+//   --color-text: #d1d5db;
+//   --color-muted: #9ca3af;
+// }
+
+// /* === GLOBAL RESET & BASE === */
+// body {
+//   @apply font-sans bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300;
+// }
+
+// /* === UTILITY CLASSES === */
+
+// .btn {
+//   @apply px-4 py-2 rounded-xl font-semibold text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] transition;
+// }
+
+// .card {
+//   @apply p-4 rounded-xl shadow-sm border;
+//   background-color: var(--color-card);
+//   border-color: var(--color-border);
+//   color: var(--color-text);
+//   box-shadow: var(--shadow-sm);
+// }
+
+// .task-title {
+//   @apply text-base font-medium leading-snug;
+// }
+
+// .task-meta {
+//   @apply flex items-center gap-2 text-sm;
+//   color: var(--color-muted);
+// }
+
+// .progress-bar {
+//   @apply w-full h-1 bg-gray-200 rounded-full overflow-hidden;
+// }
+
+// .progress-bar-inner {
+//   @apply h-full bg-[var(--color-secondary)] rounded-full transition-all duration-500;
+// }
+
+// .section-heading {
+//   @apply text-lg font-semibold mb-2;
+// }
+
+// /* === DARK MODE HANDLING === */
+// .dark .btn {
+//   @apply text-white;
+// }
+
+// .dark .card {
+//   background-color: var(--color-card);
+//   border-color: var(--color-border);
+//   color: var(--color-text);
+}

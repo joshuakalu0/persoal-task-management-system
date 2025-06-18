@@ -71,16 +71,20 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #222327;
-    --foreground: #292b31;
+    --background: #ffffff;
+    --foreground: #dedede;
     --primary: #ffffff;
     --secondary: #ffffff;
     --btn-primary: #3498db;
     --btn-secondary: #2ecc71;
     --text-primary: #1c1d2280;
-    --text-secondary: #1c1d22;
+    --text-secondary: #1c1c20d6;
     --off-text: #ffffff;
     --accent: #8e44ad;
+    --b-primary: #2e2f33d6;
+    --shadow: #e3e3e3b6;
+    --m-border: #474444a7;
+    --todo-border: 2px dashed #c7c0c733;
   }
 }
 
@@ -94,7 +98,11 @@ html.dark {
   --off-text: #292b31;
   --text-primary: #ffffff80;
   --text-secondary: #ffffff;
+  --b-primary: #ffffff;
   --accent: #7a288a;
+  --m-border: #342e2ea7;
+  --shadow: #514e4e8a;
+  --todo-border: 1px solid;
 }
 
 /* body {
@@ -106,6 +114,19 @@ html.dark {
   padding: 0;
 } */
 
+.bg-shadow {
+  background-color: var(--shadow);
+}
+
+.todo-border {
+  border: var(--todo-border);
+}
+.b-border {
+  border-bottom: 2px solid var(--b-primary);
+}
+.m-border {
+  border: 1px solid var(--m-border);
+}
 /* Background colors */
 .bg-primary {
   background: var(--primary);

@@ -1,8 +1,6 @@
 import { Plus } from "lucide-react";
 
 import { TaskCard } from "./ui/TaskCard";
-import Button from "./ui/button";
-import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 
@@ -10,6 +8,7 @@ export function TaskSet({
   title,
   tasks,
   count,
+  project_id,
   onAddTask,
   onDrop,
   onDrag,
@@ -32,21 +31,19 @@ export function TaskSet({
   }
 
   return (
-    <div className="flex-1 min-w-80 bg-primary rounded-lg p-4">
+    <div className="flex-1 todo-border min-w-80 bg-primary rounded-lg p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-1">
           <h2 className="text-primary font-medium">{title}</h2>
           <span className="text-primary  py-1 rounded text-xs">({count})</span>
         </div>
-        <button
-          onClick={onAddTask}
-          variant="ghost"
-          size="icon"
+        <Link
+          href={`/tasks/new??projectId=${project_id}&status=${title}`}
           className="flex space-x-1 justify-center items-center"
         >
-          <Plus size={14} className="p-0.5 bg-white/30 rounded-full" />
-          <span> Add new task</span>
-        </button>
+          <Plus className="w-5 h-5 rounded-full p-0.5 bg-shadow  space-x-2 text-secondary hover:text-primary" />
+          <span className="text-secondary font-semibold"> Add new task</span>
+        </Link>
       </div>
 
       <div
@@ -63,7 +60,7 @@ export function TaskSet({
       >
         {tasks?.map((task) => (
           <div key={task.id} draggable onDragStart={(e) => onDrag(e, task)}>
-            <Link href={`/tasks/${task.id}`}>
+            <Link href={`/tasks/new?projectId=${project_id}`}>
               <TaskCard task={task} itemOnAir={itemOnAir} />
             </Link>
           </div>

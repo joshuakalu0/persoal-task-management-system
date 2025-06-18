@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormField from "./FormField";
+import clsx from "clsx";
 
 const DynamicForm = ({
   fields,
@@ -10,6 +11,7 @@ const DynamicForm = ({
   defaultValues = {},
   submitText = "Submit",
   className = "",
+  submitSize = "not-full",
   children,
 }) => {
   const {
@@ -40,7 +42,10 @@ const DynamicForm = ({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          className={clsx(
+            "px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2",
+            { "w-full justify-center": submitSize == "full" }
+          )}
         >
           {isSubmitting ? (
             <>
@@ -117,7 +122,7 @@ const MyForm = () => {
       submitText="Create Task"
       className="space-y-6"
     >
-      {/* Add any additional form content here */}
+      {/* Add any additional form content here */
 //     </DynamicForm>
 //   );
 // };
