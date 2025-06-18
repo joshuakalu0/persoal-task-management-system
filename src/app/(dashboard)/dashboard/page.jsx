@@ -1,12 +1,10 @@
-'use server';
+"use server";
 import { getServerUser } from "@/lib/auth-check";
 import { getAllProjectsForUser } from "@/actions/project";
 import Link from "next/link";
 import DashboardLayoutWrapper from "@/components/layout";
 import { getColor } from "@/utiles/colorGenerator";
 import { Edit, Pen, PencilLineIcon } from "lucide-react";
-
-export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   try {
