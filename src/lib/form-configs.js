@@ -99,20 +99,36 @@ export const projectFields = [
 ];
 
 // Task Form Configuration
-export const taskSchema = z.object({
-  title: z.string().min(2, { message: "Title must be at least 2 characters" }),
-  description: z
-    .string()
-    .min(5, { message: "Description must be at least 5 characters" }),
-  progress: z
-    .string()
-    .min(0, { message: "minimum is 0" })
-    .max(7, { message: "Max number is 7" }),
-  assignedTo: z.array(z.string().email({ message: "Invalid email address" })),
-  dueDate: z.string().min(1, { message: "Due date is required" }),
-  priority: z.enum(["LOW", "NORMAL", "HIGH", "URGENT"]),
-  status: z.enum(["TODO", "IN_PROGRESS", "COMPLETED"]),
-});
+export const taskSchema = z
+  .object({
+    title: z
+      .string()
+      .min(2, { message: "Title must be at least 2 characters" }),
+    description: z
+      .string()
+      .min(5, { message: "Description must be at least 5 characters" }),
+    progress: z
+      .string()
+      .min(0, { message: "minimum is 0" })
+      .max(7, { message: "Max number is 7" }),
+    assignedTo: z
+      .array(z.string().email({ message: "Invalid email address" }))
+      .optional(),
+    dueDate: z.string().min(1, { message: "Due date is required" }),
+    priority: z.enum(["LOW", "NORMAL", "HIGH", "URGENT"]),
+    status: z.enum(["TODO", "IN_PROGRESS", "DONE"]),
+  })
+  .refine(
+    (data) => {
+      try {
+        Number(data.progress);
+        return data.progress >= 0 && data.progress <= 10;
+      } catch (error) {
+        return false;
+      }
+    },
+    { message: "progress must be a number from 0 - 10", path: ["progress"] }
+  );
 
 export const taskFields = [
   {
@@ -130,39 +146,85 @@ export const taskFields = [
     width: "full",
   },
   {
-    name: "progress",
-    type: "number",
-    label: "Progress",
-    placeholder: "Enter progress (0-7)",
-    width: "half",
-  },
-  {
-    name: "dueDate",
-    type: "date",
-    label: "Due Date",
-    width: "half",
-  },
-  {
-    name: "priority",
-    type: "select",
-    label: "Priority",
-    width: "half",
-    options: [
-      { value: "LOW", label: "Low" },
-      { value: "NORMAL", label: "Normal" },
-      { value: "HIGH", label: "High" },
-      { value: "URGENT", label: "Urgent" },
+    type: "double",
+    fields: [
+      {
+        name: "progress",
+        type: "text",
+        label: "Progress",
+        placeholder: "Enter progress (0-7)",
+        width: "full",
+      },
+      {
+        name: "dueDate",
+        type: "date",
+        label: "Due Date",
+        width: "full",
+      },
     ],
   },
   {
-    name: "status",
-    type: "select",
-    label: "Status",
-    width: "half",
-    options: [
-      { value: "TODO", label: "To Do" },
-      { value: "IN_PROGRESS", label: "In Progress" },
-      { value: "COMPLETED", label: "Completed" },
+    type: "double",
+    fields: [
+      {
+        name: "priority",
+        type: "select",
+        label: "Priority",
+        width: "full",
+        options: [
+          { value: "LOW", label: "Low" },
+          { value: "NORMAL", label: "Normal" },
+          { value: "HIGH", label: "High" },
+          { value: "URGENT", label: "Urgent" },
+        ],
+      },
+      {
+        name: "status",
+        type: "select",
+        label: "Status",
+        width: "full",
+        options: [
+          { value: "TODO", label: "To Do" },
+          { value: "IN_PROGRESS", label: "In Progress" },
+          { value: "DONE", label: "Done" },
+        ],
+      },
     ],
   },
+  // {
+  //   name: "progress",
+  //   type: "number",
+  //   label: "Progress",
+  //   placeholder: "Enter progress (0-7)",
+  //   width: "half",
+  // },
+  // {
+  //   name: "dueDate",
+  //   type: "date",
+  //   label: "Due Date",
+  //   width: "half",
+  // },
+  // {
+  //   name: "priority",
+  //   type: "select",
+  //   label: "Priority",
+  //   width: "half",
+  //   options: [
+  //     { value: "LOW", label: "Low" },
+  //     { value: "NORMAL", label: "Normal" },
+  //     { value: "HIGH", label: "High" },
+  //     { value: "URGENT", label: "Urgent" },
+  //   ],
+  // },
+  // {
+  //   name: "status",
+  //   type: "select",
+  //   label: "Status",
+  //   width: "half",
+  //   options: [
+  //     { value: "TODO", label: "To Do" },
+  //     { value: "IN_PROGRESS", label: "In Progress" },
+  //     { value: "COMPLETED", label: "Completed" },
+  //   ],
+  // },
 ];

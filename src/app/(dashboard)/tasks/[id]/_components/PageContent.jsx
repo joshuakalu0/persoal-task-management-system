@@ -12,6 +12,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { getColor } from "@/utiles/colorGenerator";
 
 const messageSchema = z.object({
   message: z
@@ -29,6 +30,7 @@ export default function PageContent({ task, project }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(messageSchema),
@@ -49,6 +51,7 @@ export default function PageContent({ task, project }) {
     if (message) {
       router.refresh();
     }
+    reset();
 
     // TODO: Implement message sending
     // console.log("Sending message:", data);
@@ -97,7 +100,7 @@ export default function PageContent({ task, project }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-background p-8">
+    <div className="min-h-screen w-full bg-secondary p-8">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -126,7 +129,7 @@ export default function PageContent({ task, project }) {
             </span>
             <Link
               href={`/tasks/${task.id}/edit`}
-              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+              className="px-4 py-2 btn-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
             >
               Edit Task
             </Link>
@@ -153,7 +156,11 @@ export default function PageContent({ task, project }) {
               <div className="space-y-6 mb-6">
                 {task.comments?.map((message) => (
                   <div key={message.id} className="flex gap-4">
-                    <div className="w-10 h-10 border border-gray-50 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
+                    <div
+                      className={`w-10 h-10 border border-gray-50 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium ${getColor(
+                        message.user.name
+                      )}`}
+                    >
                       {message.user.name[0]}
                     </div>
                     <div className="flex-1">
@@ -210,7 +217,7 @@ export default function PageContent({ task, project }) {
                 <textarea
                   {...register("message")}
                   placeholder="Type your message..."
-                  className="w-full p-3 rounded-lg bg-background border border-border text-foreground min-h-[100px]"
+                  className="w-full p-3 rounded-lg bg-shadow border border-border text-foreground min-h-[100px]"
                 />
                 {errors.message && (
                   <p className="text-red-400 text-sm mt-1">
@@ -253,7 +260,7 @@ export default function PageContent({ task, project }) {
                 </h2>
                 <button
                   onClick={() => setIsAssignModalOpen(true)}
-                  className="text-sm border border-gray-50 p-2 rounded-lg text-primary hover:text-primary/80 transition-colors"
+                  className="text-sm m-border border-gray-50 p-2 rounded-lg text-secondary hover:text-primary/80 transition-colors"
                 >
                   + Assign Users
                 </button>
@@ -262,9 +269,14 @@ export default function PageContent({ task, project }) {
                 {task.assignees?.map((assignee) => (
                   <div
                     key={assignee.id}
-                    className="flex items-center gap-3 p-2 rounded-lg bg-background"
+                    className="flex items-center gap-3 p-2 rounded-lg bg-primary"
                   >
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
+                    <div
+                      className={`w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center  font-medium text-white ${getColor(
+                        assignee.name
+                      )}
+                      `}
+                    >
                       {assignee.name[0]}
                     </div>
                     <div>

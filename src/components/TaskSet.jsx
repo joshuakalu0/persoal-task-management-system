@@ -60,7 +60,7 @@ export function TaskSet({
       >
         {tasks?.map((task) => (
           <div key={task.id} draggable onDragStart={(e) => onDrag(e, task)}>
-            <Link href={`/tasks/new?projectId=${project_id}`}>
+            <Link href={`/tasks/${task.id}`}>
               <TaskCard task={task} itemOnAir={itemOnAir} />
             </Link>
           </div>

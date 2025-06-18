@@ -23,13 +23,8 @@ export async function createProject(data) {
         members: {
           create: members.map((email) => ({
             user: {
-              connectOrCreate: {
-                where: { email },
-                create: {
-                  email,
-                  name: email.split("@")[0], // Temporary name from email
-                  password: "", // Temporary password, they'll need to register
-                },
+              connect: {
+                email,
               },
             },
           })),

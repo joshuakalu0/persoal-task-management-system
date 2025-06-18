@@ -6,7 +6,7 @@ import AvatarGroup from "./Avatars";
 
 export function TaskCard({ task, itemOnAir = null }) {
   const getProgressColor = () => {
-    if (task.progress >= 80) return "progress-green";
+    if (task.progress >= 80) return "btn-secondary";
     if (task.progress >= 50) return "bg-progress";
     return "bg-progress";
   };

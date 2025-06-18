@@ -8,17 +8,16 @@ import { createTask } from "@/actions/task";
 import DynamicForm from "@/components/ui/DynamicForm";
 import { taskFields, taskSchema } from "@/lib/form-configs";
 
-export default function CreateTaskPage({ project_id }) {
+export default function CreateTaskPage({ project_id, status: todo_type = "" }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-
+  const status = todo_type.trim().replace(" ", "_").toUpperCase();
   const onSubmit = async (data) => {
     try {
       setLoading(true);
       setError("");
       const res = await createTask(project_id, data);
-
       if (res.success) {
         router.push(`/projects/${project_id}`);
       } else {
@@ -55,6 +54,7 @@ export default function CreateTaskPage({ project_id }) {
             fields={taskFields}
             validationSchema={taskSchema}
             onSubmit={onSubmit}
+            defaultValues={{ status: status }}
             className="space-y-6"
             submitText="Create Task"
           />

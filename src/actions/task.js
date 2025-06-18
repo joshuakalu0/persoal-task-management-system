@@ -32,9 +32,9 @@ export async function createTask(projectId, data) {
           connect: { id: user.id },
         },
         // creatorId: ,
-        assignees: {
-          connect: data.assignedTo.map((id) => ({ id })),
-        },
+        // assignees: {
+        //   connect: data.assignedTo.map((id) => ({ id })),
+        // },
       },
     });
     return { success: true, task };

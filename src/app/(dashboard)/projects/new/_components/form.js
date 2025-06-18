@@ -10,6 +10,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { X } from "lucide-react";
 
 export default function ProjectForm({ user }) {
   const router = useRouter();
@@ -23,6 +24,8 @@ export default function ProjectForm({ user }) {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(projectSchema),
@@ -36,9 +39,11 @@ export default function ProjectForm({ user }) {
     { id: 4, color: "#8B5CF6", name: "Purple" },
     { id: 5, color: "#06B6D4", name: "Cyan" },
   ];
+  const members = watch("members") || [];
 
-  const handleAddMember = async (email, setValue, members) => {
-    const trimmedEmail = email.trim();
+  const handleAddMember = async (data) => {
+    console.log(memberEmail);
+    const trimmedEmail = memberEmail.trim();
     setMemberError("");
 
     if (!trimmedEmail) return;
@@ -76,6 +81,13 @@ export default function ProjectForm({ user }) {
       setMemberError("Failed to add member");
     }
   };
+  const handleRemoveMember = (indexToRemove) => {
+    const updatedMembers = members.filter(
+      (_, index) => index !== indexToRemove
+    );
+    setValue("members", updatedMembers, { shouldValidate: true });
+    setMemberError("");
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -83,6 +95,8 @@ export default function ProjectForm({ user }) {
       setError("");
 
       const result = await createProject(data);
+
+      console.log(result);
 
       if (result.error) {
         setError(result.error);
@@ -171,7 +185,7 @@ export default function ProjectForm({ user }) {
                           ? "ring-2 ring-primary ring-offset-2 ring-offset-secondary"
                           : ""
                       }`}
-                      style={{ secondaryColor: color.color }}
+                      style={{ background: color.color }}
                     >
                       <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-primary opacity-0 group-hover:opacity-100 whitespace-nowrap">
                         {color.name}
@@ -284,7 +298,7 @@ export default function ProjectForm({ user }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-6 py-2 btn-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {loading ? (
                   <>

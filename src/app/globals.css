@@ -56,7 +56,7 @@ body {
 
 @import "tailwindcss";
 
-/* :root {
+:root {
   --background: #e40505;
   --foreground: #171717;
   --progress: #ffa048;
@@ -67,7 +67,29 @@ body {
   --text-secondary: #1c1d22;
   --border-radius: 0.5rem;
   --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
+  --color-success: #34c759;
+  --color-success-foreground: #ffffff;
+  --color-success-bg: rgba(52, 199, 89, 0.1);
+
+  --color-info: #0a84ff;
+  --color-info-foreground: #ffffff;
+  --color-info-bg: rgba(10, 132, 255, 0.1);
+
+  --color-muted: #8e8e93;
+  --color-muted-foreground: #ffffff;
+  --color-muted-bg: rgba(142, 142, 147, 0.1);
+
+  --color-destructive: #ff3b30;
+  --color-destructive-foreground: #ffffff;
+  --color-destructive-bg: rgba(255, 59, 48, 0.1);
+
+  --color-warning: #ff9500;
+  --color-warning-foreground: #000000;
+  --color-warning-bg: rgba(255, 149, 0, 0.1);
+
+  --text-color: #000000;
+  --background-color: #ffffff;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -103,6 +125,15 @@ html.dark {
   --m-border: #342e2ea7;
   --shadow: #514e4e8a;
   --todo-border: 1px solid;
+
+  --color-success-bg: rgba(52, 199, 89, 0.2);
+  --color-info-bg: rgba(10, 132, 255, 0.2);
+  --color-muted-bg: rgba(142, 142, 147, 0.2);
+  --color-destructive-bg: rgba(255, 59, 48, 0.2);
+  --color-warning-bg: rgba(255, 149, 0, 0.2);
+
+  --text-color: #ffffff;
+  --background-color: #000000;
 }
 
 /* body {
@@ -225,4 +256,69 @@ html.dark {
 }
 .items-center {
   align-items: center;
+}
+/*  */
+.text-success {
+  color: var(--color-success);
+}
+.bg-success\/10 {
+  background-color: var(--color-success-bg);
+}
+.text-success-foreground {
+  color: var(--color-success-foreground);
+}
+.bg-success\/20 {
+  background-color: rgba(52, 199, 89, 0.2);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+.bg-info\/10 {
+  background-color: var(--color-info-bg);
+}
+.text-info-foreground {
+  color: var(--color-info-foreground);
+}
+.bg-info\/20 {
+  background-color: rgba(10, 132, 255, 0.2);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+.bg-muted\/10 {
+  background-color: var(--color-muted-bg);
+}
+.text-muted-foreground {
+  color: var(--color-muted-foreground);
+}
+.bg-muted\/20 {
+  background-color: rgba(142, 142, 147, 0.2);
+}
+
+.text-destructive {
+  color: var(--color-destructive);
+}
+.bg-destructive\/10 {
+  background-color: var(--color-destructive-bg);
+}
+.text-destructive-foreground {
+  color: var(--color-destructive-foreground);
+}
+.bg-destructive\/20 {
+  background-color: rgba(255, 59, 48, 0.2);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+.bg-warning\/10 {
+  background-color: var(--color-warning-bg);
+}
+.text-warning-foreground {
+  color: var(--color-warning-foreground);
+}
+.bg-warning\/20 {
+  background-color: rgba(255, 149, 0, 0.2);
 }

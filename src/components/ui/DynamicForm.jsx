@@ -22,7 +22,6 @@ const DynamicForm = ({
     resolver: validationSchema ? zodResolver(validationSchema) : undefined,
     defaultValues,
   });
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={className}>
       <div className="flex flex-wrap gap-4">
@@ -43,7 +42,7 @@ const DynamicForm = ({
           type="submit"
           disabled={isSubmitting}
           className={clsx(
-            "px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2",
+            "px-6 py-2 btn-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2",
             { "w-full justify-center": submitSize == "full" }
           )}
         >

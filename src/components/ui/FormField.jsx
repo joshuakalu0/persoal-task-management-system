@@ -16,7 +16,7 @@ const FormField = ({ field, register, errors, className = "" }) => {
     }
   };
 
-  const renderField = () => {
+  const renderField = (field) => {
     const baseClasses = `p-3 rounded-lg bg-background border border-text-primary text-foreground ${getInputWidth(
       field.width
     )} ${className}`;
@@ -60,6 +60,27 @@ const FormField = ({ field, register, errors, className = "" }) => {
         return null;
     }
   };
+  if (field.type == "double") {
+    return (
+      <div className="grid grid-cols-2 gap-4 w-full">
+        {field.fields.map((item, id) => (
+          <div className={`space-y-1 w-full }`} key={id}>
+            {item.label && (
+              <label className="block text-sm font-medium text-text-primary mb-1">
+                {item.label}
+              </label>
+            )}
+            {renderField(item)}
+            {errors?.[item.name] && (
+              <p className="text-destructive text-sm">
+                {errors[item.name].message}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className={`space-y-1 ${getInputWidth(field.width)}`}>
@@ -68,7 +89,7 @@ const FormField = ({ field, register, errors, className = "" }) => {
           {field.label}
         </label>
       )}
-      {renderField()}
+      {renderField(field)}
       {errors?.[field.name] && (
         <p className="text-destructive text-sm">{errors[field.name].message}</p>
       )}

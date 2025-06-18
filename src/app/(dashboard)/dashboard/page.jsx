@@ -19,6 +19,7 @@ export default async function DashboardPage() {
     projects,
     project_id: "",
   };
+  console.log(projects);
 
   return (
     <ProtectedRoute>
@@ -78,12 +79,14 @@ export default async function DashboardPage() {
                               {project.description}
                             </p>
                           </div>
-                          <Link
-                            href={`/projects/${project.id}/edit`}
-                            className="absolute top-1 right-3 rounded-full"
-                          >
-                            <PencilLineIcon className="text-primary hover:text-secondary p-2 bg-primary rounded-full size-9" />
-                          </Link>
+                          {project.ownerId == user.id && (
+                            <Link
+                              href={`/projects/${project.id}/edit`}
+                              className="absolute top-1 right-3 rounded-full"
+                            >
+                              <PencilLineIcon className="text-primary hover:text-secondary p-2 bg-primary rounded-full size-9" />
+                            </Link>
+                          )}
                         </div>
                         <div className="mt-6 flex justify-between items-end">
                           <div className="flex -space-x-2">

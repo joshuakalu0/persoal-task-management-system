@@ -136,20 +136,6 @@ export default function AssignUserModal({
           >
             Cancel
           </button>
-          <button
-            onClick={handleAssign}
-            disabled={loading || selectedUsers.length === 0}
-            className="px-4 py-2 rounded-lg btn-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            {loading ? (
-              <>
-                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                <span>Updating...</span>
-              </>
-            ) : (
-              "Assign Selected Users"
-            )}
-          </button>
         </div>
       </div>
     </div>
