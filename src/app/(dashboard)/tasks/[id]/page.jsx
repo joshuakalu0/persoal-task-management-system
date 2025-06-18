@@ -1,3 +1,4 @@
+"use server";
 import { getTaskById } from "@/actions/task";
 import PageContent from "./_components/PageContent";
 import { getProjectMembers } from "@/actions/project";

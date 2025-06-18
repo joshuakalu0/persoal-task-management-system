@@ -1,3 +1,4 @@
+"use server";
 import CreateTaskPage from "./_components/form";
 
 export default async function page(props) {

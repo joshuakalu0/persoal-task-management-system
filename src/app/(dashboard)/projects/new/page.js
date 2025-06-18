@@ -1,3 +1,4 @@
+"use server";
 import ProtectedRoute, {
   ProtectedRouteWrapper,
 } from "@/components/auth/protected-route";

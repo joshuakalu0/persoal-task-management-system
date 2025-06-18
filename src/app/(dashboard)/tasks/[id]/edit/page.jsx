@@ -1,3 +1,4 @@
+"use server";
 import { getProjectMembers } from "@/actions/project";
 import { getTaskById } from "@/actions/task";
 import ProtectedRoute, {

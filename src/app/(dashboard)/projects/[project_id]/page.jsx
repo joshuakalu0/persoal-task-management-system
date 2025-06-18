@@ -1,3 +1,4 @@
+"use server";
 import { getAllProjectsForUser } from "@/actions/project";
 import DashboardLayoutWrapper from "@/components/layout";
 import { getServerUser } from "@/lib/auth-check";

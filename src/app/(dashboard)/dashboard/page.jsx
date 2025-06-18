@@ -1,3 +1,4 @@
+'use server';
 import { getServerUser } from "@/lib/auth-check";
 import { getAllProjectsForUser } from "@/actions/project";
 import Link from "next/link";
