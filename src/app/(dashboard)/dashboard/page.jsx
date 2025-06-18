@@ -5,18 +5,36 @@ import DashboardLayoutWrapper from "@/components/layout";
 import { getColor } from "@/utiles/colorGenerator";
 import { Edit, Pen, PencilLineIcon } from "lucide-react";
 
-export default async function DashboardPage() {
-  const user = await getServerUser();
-  const projectsResult = await getAllProjectsForUser();
-  const projects = projectsResult.projects || [];
+export const dynamic = "force-dynamic";
 
-  const config = {
-    showsection: false,
-    user,
-    projects,
-    project_id: "",
-  };
-  // console.log(projects);
+export default async function DashboardPage() {
+  try {
+    user = await getServerUser();
+    projectsResult = await getAllProjectsForUser();
+    projects = projectsResult.projects || [];
+
+    config = {
+      showsection: false,
+      user,
+      projects,
+      project_id: "",
+    };
+  } catch (error) {
+    return (
+      <>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-secondary mb-4">
+              Error Loading Dashboard
+            </h1>
+            <p className="text-primary">
+              There was an error loading your dashboard. Please try again later.
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <DashboardLayoutWrapper config={config}>
