@@ -1,3 +1,4 @@
+"use server";
 import React from "react";
 import LoginPage from "../_components/LoginFom";
 import { getServerUser } from "@/lib/auth-check";

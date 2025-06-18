@@ -1,3 +1,4 @@
+"use server";
 import React from "react";
 import RegisterPage from "../_components/registerForm";
 import { getServerUser } from "@/lib/auth-check";
