@@ -5,20 +5,17 @@ import Link from "next/link";
 import { useAuth } from "@/context/auth-context";
 import DynamicForm from "@/components/ui/DynamicForm";
 import { loginFields, loginSchema } from "@/lib/form-configs";
+import { loginUser } from "@/actions/user";
 
 export default function LoginPage() {
-  const { login } = useAuth();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    setLoading(true);
     setError("");
-    const result = await login(data);
+    const result = await loginUser(data);
 
     if (result.error) {
       setError(result.error);
-      setLoading(false);
     }
   };
 

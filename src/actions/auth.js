@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { signIn } from "@/lib/auth";
+import { cookies } from "next/headers";
 
 export async function registerUser(data) {
   try {

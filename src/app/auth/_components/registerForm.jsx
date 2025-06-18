@@ -2,29 +2,22 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useAuth } from "@/context/auth-context";
 import { useRouter } from "next/navigation";
 import DynamicForm from "@/components/ui/DynamicForm";
 import { registerFields, registerSchema } from "@/lib/form-configs";
+import { registerUser } from "@/actions/auth";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { register: registerUser } = useAuth();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    setLoading(true);
     setError("");
     const result = await registerUser(data);
     if (result.error) {
       setError(result.error);
-      setLoading(false);
       return;
     }
-
-    // Redirect to login page after successful registration
-    router.push("/auth/login");
   };
 
   return (

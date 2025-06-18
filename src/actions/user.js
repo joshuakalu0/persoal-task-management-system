@@ -1,36 +1,91 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
+import { signJWT } from "@/lib/jwt";
+import { redirect } from "next/navigation";
 
 // Register User
-export async function registerUser({ email, name, fullName, password }) {
-  const hashedPassword = await bcrypt.hash(password, 10);
+export async function registerUser({ email, name, password }) {
+  try {
+    const cookie = cookies();
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  // ccheck if user exit
-  const existingUser = await prisma.user.findUnique({ where: { email } });
+    // ccheck if user exit
+    const existingUser = await prisma.user.findUnique({ where: { email } });
 
-  if (existingUser) {
-    return {
-      error: "user already exist",
-    };
+    if (existingUser) {
+      return {
+        error: "user already exist",
+      };
+    }
+    const user = await prisma.user.create({
+      data: {
+        email,
+        name,
+        password: hashedPassword,
+      },
+    });
+
+    const token = signJWT({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    });
+
+    cookie.set("auth-token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60,
+      path: "/",
+    });
+
+    return redirect("/dashboard");
+  } catch (error) {
+    return { error: "An error occured" };
   }
-  return await prisma.user.create({
-    data: {
-      email,
-      name,
-      fullName: name,
-      hashedPassword,
-    },
-  });
 }
 
 // Login User
-export async function loginUser(email, password) {
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) throw new Error("User not found");
-  const isValid = await bcrypt.compare(password, user.hashedPassword);
-  if (!isValid) throw new Error("Invalid credentials");
-  return user;
+export async function loginUser({ email, password }) {
+  try {
+    const cookie = cookies();
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        password: true,
+      },
+    });
+    if (!user || !user.password) {
+      return { error: "Invalid credentials" };
+    }
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return { error: "Invalid credentials" };
+    }
+
+    const token = signJWT({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    });
+
+    cookie.set("auth-token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60,
+      path: "/",
+    });
+
+    return redirect("/dashboard");
+  } catch (error) {
+    return { error: "An error occured" };
+  }
 }
 
 // Get User by ID
