@@ -1,4 +1,7 @@
 "use server";
+import ProtectedRoute, {
+  ProtectedRouteWrapper,
+} from "@/components/auth/protected-route";
 import CreateTaskPage from "./_components/form";
 
 export default async function page(props) {

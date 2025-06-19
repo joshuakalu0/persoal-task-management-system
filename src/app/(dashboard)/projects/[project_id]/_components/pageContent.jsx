@@ -73,7 +73,12 @@ export default function PageContent({
     if (task) {
       setTasks((prev) =>
         prev.map((task) =>
-          task.id === taskId ? { ...task, status: newStatus } : task
+          task.id === taskId
+            ? {
+                ...task,
+                status: newStatus == "in-progress" ? "in_progress" : newStatus,
+              }
+            : task
         )
       );
     }
