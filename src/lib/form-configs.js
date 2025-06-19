@@ -65,7 +65,9 @@ export const projectSchema = z.object({
     .string()
     .min(5, { message: "Description must be at least 5 characters" }),
   color: z.string().min(3, { message: "Color is required" }),
-  members: z.array(z.string().email({ message: "Invalid email address" })),
+  members: z
+    .array(z.string().email({ message: "Invalid email address" }))
+    .optional(),
 });
 
 export const projectFields = [
@@ -230,4 +232,3 @@ export const taskFields = [
 ];
 
 // Edit Task Form Configuration
-

@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 // Register User
 export async function registerUser({ email, name, password }) {
   try {
-    const cookie = cookies();
+    const cookie = await cookies();
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // ccheck if user exit
@@ -19,7 +19,13 @@ export async function registerUser({ email, name, password }) {
         error: "user already exist",
       };
     }
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.create({
+      data: {
+        email,
+        name,
+        password: hashedPassword,
+      },
+    });
 
     const token = signJWT({
       id: user.id,
@@ -81,7 +87,6 @@ export async function loginUser({ email, password }) {
 
     return redirect("/dashboard");
   } catch (error) {
-    console.log(error);
     return { error: "An error occured" };
   }
 }

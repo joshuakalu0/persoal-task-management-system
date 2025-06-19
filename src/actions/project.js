@@ -21,13 +21,16 @@ export async function createProject(data) {
         color,
         ownerId: user.id,
         members: {
-          create: members.map((email) => ({
-            user: {
-              connect: {
-                email,
-              },
-            },
-          })),
+          create:
+            members && members.length > 0
+              ? members.map((email) => ({
+                  user: {
+                    connect: {
+                      email,
+                    },
+                  },
+                }))
+              : undefined,
         },
       },
       include: {

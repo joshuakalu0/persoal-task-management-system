@@ -306,7 +306,7 @@ export default function ProjectForm({ user }) {
                     <span>Creating...</span>
                   </>
                 ) : (
-                  "Account Changes"
+                  "Create Project"
                 )}
               </button>
             </div>
