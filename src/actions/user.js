@@ -19,13 +19,7 @@ export async function registerUser({ email, name, password }) {
         error: "user already exist",
       };
     }
-    const user = await prisma.user.create({
-      data: {
-        email,
-        name,
-        password: hashedPassword,
-      },
-    });
+    const user = await prisma.user.findUnique({ where: { email } });
 
     const token = signJWT({
       id: user.id,
@@ -50,7 +44,8 @@ export async function registerUser({ email, name, password }) {
 // Login User
 export async function loginUser({ email, password }) {
   try {
-    const cookie = cookies();
+    const cookie = await cookies();
+    console.log("here", email);
     const user = await prisma.user.findUnique({
       where: { email },
       select: {
@@ -60,6 +55,7 @@ export async function loginUser({ email, password }) {
         password: true,
       },
     });
+    console.log(user);
     if (!user || !user.password) {
       return { error: "Invalid credentials" };
     }
@@ -73,6 +69,7 @@ export async function loginUser({ email, password }) {
       email: user.email,
       name: user.name,
     });
+    console.log(token);
 
     cookie.set("auth-token", token, {
       httpOnly: true,
@@ -84,6 +81,7 @@ export async function loginUser({ email, password }) {
 
     return redirect("/dashboard");
   } catch (error) {
+    console.log(error);
     return { error: "An error occured" };
   }
 }
