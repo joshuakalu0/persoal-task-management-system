@@ -136,27 +136,27 @@ export default async function DashboardPage() {
                 </div>
                 <div className="space-y-4">
                   {[
-                    {
-                      id: 1,
-                      title: "Design System Updates",
-                      project: "Marketing Website",
-                      status: "in-progress",
-                      dueDate: "2024-06-20",
-                    },
-                    {
-                      id: 2,
-                      title: "User Flow Documentation",
-                      project: "Mobile App",
-                      status: "todo",
-                      dueDate: "2024-06-22",
-                    },
-                    {
-                      id: 3,
-                      title: "API Integration",
-                      project: "Backend Services",
-                      status: "completed",
-                      dueDate: "2024-06-18",
-                    },
+                    // {
+                    //   id: 1,
+                    //   title: "Design System Updates",
+                    //   project: "Marketing Website",
+                    //   status: "in-progress",
+                    //   dueDate: "2024-06-20",
+                    // },
+                    // {
+                    //   id: 2,
+                    //   title: "User Flow Documentation",
+                    //   project: "Mobile App",
+                    //   status: "todo",
+                    //   dueDate: "2024-06-22",
+                    // },
+                    // {
+                    //   id: 3,
+                    //   title: "API Integration",
+                    //   project: "Backend Services",
+                    //   status: "completed",
+                    //   dueDate: "2024-06-18",
+                    // },
                   ].map((task) => (
                     <Link
                       key={task.id}
@@ -202,30 +202,30 @@ export default async function DashboardPage() {
                 </h2>
                 <div className="space-y-6">
                   {[
-                    {
-                      id: 1,
-                      type: "project_created",
-                      user: "You",
-                      action: "created",
-                      target: "Marketing Website",
-                      time: "2h ago",
-                    },
-                    {
-                      id: 2,
-                      type: "task_completed",
-                      user: "Sarah",
-                      action: "completed",
-                      target: "Homepage Design",
-                      time: "4h ago",
-                    },
-                    {
-                      id: 3,
-                      type: "comment_added",
-                      user: "Mike",
-                      action: "commented on",
-                      target: "API Documentation",
-                      time: "5h ago",
-                    },
+                    // {
+                    //   id: 1,
+                    //   type: "project_created",
+                    //   user: "You",
+                    //   action: "created",
+                    //   target: "Marketing Website",
+                    //   time: "2h ago",
+                    // },
+                    // {
+                    //   id: 2,
+                    //   type: "task_completed",
+                    //   user: "Sarah",
+                    //   action: "completed",
+                    //   target: "Homepage Design",
+                    //   time: "4h ago",
+                    // },
+                    // {
+                    //   id: 3,
+                    //   type: "comment_added",
+                    //   user: "Mike",
+                    //   action: "commented on",
+                    //   target: "API Documentation",
+                    //   time: "5h ago",
+                    // },
                   ].map((activity) => (
                     <div
                       key={activity.id}
